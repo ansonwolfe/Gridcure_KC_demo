@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>GridCure App</title>
+    <!-- Path to Framework7 Library CSS-->
+    <link rel="stylesheet" href="css/framework7.min.css">
+    <!-- Path to your custom app styles-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/my-app.css">
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    
+
+    <!-- Google Maps-->
+	<script src="https://maps.googleapis.com/maps/api/js"></script>
+    
+    <!-- Data Parser -->
+    <script src="js/jquery-2.1.3.js"></script>
+    <script type="text/javascript" src="js/papaparse.js"></script>
+    
+        
+  </head>
+  <body>
+    <!-- Status bar overlay for fullscreen mode-->
+    <div class="statusbar-overlay"></div>
+    <!-- Panels overlay-->
+    <div class="panel-overlay"></div>
+    <!-- Left panel with reveal effect-->
+    <div class="panel panel-left panel-reveal">
+      <div class="content-block">
+        <p></p>
+        <ul>
+        	<li><i class="fa fa-laptop fa-fw mr-15" ></i><a href="#index" data-force="true" class="close-panel">DASHBOARD</a></li>
+            <li><i class="fa fa-pie-chart fa-fw mr-15" ></i><a href="#report" class="close-panel">REPORT</a></li>
+            <li><i class="fa fa-bar-chart fa-fw mr-15" ></i><a href="#realtime" class="close-panel">REAL-TIME DATA</a></li>
+            <li><i class="fa fa-send fa-fw mr-15" ></i><a href="#" class="close-panel">NOTIFICATIONS</a></li>
+            <li><i class="fa fa-cog fa-fw mr-15" ></i><a href="#" class="close-panel">SETTINGS</a></li>
+        <ul>
+      </div>
+    </div>
+    <!-- Right panel with cover effect-->
+    <div class="panel panel-right panel-cover">
+      <div class="content-block">
+      	<div class="col-sm-13" >             	
+                    <form>
+                    <div style="margin-top: -10px;">
+                        <div class="col-sm-13">
+                            <span class="gridBlue"><h4>Refine your search:</h4></span>
+                            <!-- <div class="form-group" style="padding-top: 16px;">
+                                <label for="startDate">Start Date</label>
+                                <input type="email" class="form-control" id="startDate" placeholder="09/20/2012">
+                            </div>
+                            <div class="form-group">
+                                <label for="endDate">End Date</label>
+                                <input type="email" class="form-control" id="endDate" placeholder="01/20/2015">
+                            </div>-->
+                        </div>
+                         <div class="col-sm-13">
+                            <div class="form-group">
+                                <label for="customerType">Transformer Type</label>
+                                <select class="form-control">
+                                  <option>All</option>
+                                  <option>2</option>
+                                  <option>3</option>
+                                  <option>4</option>
+                                  <option>5</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="mapGrid">Map grid resolution</label>
+                                <select class="form-control">
+                                  <option>Search within visible map area</option>
+                                  <option>Search within bounding box</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-13">
+                            <label for="filters1">Filters</label>
+                            <div class="form-inline">
+                                <div class="form-group">
+                                    <select class="form-control">
+                                      <option>Severity</option>
+                                      <option>1</option>
+                                      <option>2</option>
+                                      <option>3</option>
+                                      <option>4</option>
+                                      <option>5</option>
+                                    </select>
+                                    
+                                </div>
+                                <div class="form-group" style="margin-left: 10px;">
+                                    <select class="form-control">
+                                      <option>Status</option>
+                                      <option>T1</option>
+                                      <option>T2</option>
+                                      <option>T3</option>
+                                      <option>D1</option>
+                                      <option>D2</option>
+                                      <option>DT</option>
+                                    </select>
+                                </div>
+                                <div class="form-group" style="margin-top: 10px;">
+                                    <select class="form-control">
+                                      <option>Asset Age GTE</option>
+                                      <option>5</option>
+                                      <option>10</option>
+                                      <option>15</option>
+                                      <option>20</option>
+                                      <option>25</option>
+                                      <option>30</option>
+                                      <option>35</option>
+                                      <option>40</option>
+                                      <option>45</option>
+                                      <option>50</option>
+                                    </select>
+                                </div>
+                                <div class="form-group" style="margin-top: 10px;">
+                                    <select class="form-control">
+                                      <option>Customer Type</option>
+                                      <option>All</option>
+                                      <option>Residental</option>
+                                      <option>Small General Service</option>
+                                      <option>Med General Service</option>
+                                      <option>Large General Service</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-13" style="margin-top:28px">
+                            
+                            <div class="form-group" >
+                                <button type="submit" class="btn btn-primary btn-lg btn-block close-panel">
+                                <span class="glyphicon glyphicon-search" aria-hidden="true" style="margin-right:14px"></span>Search</button>
+                            </div>
+                        </div>
+                    </div>
+                    </form>
+                </div>
+      </div>
+    </div>
+    <!-- Views-->
+    <div class="views">
+      <!-- Your main view, should have "view-main" class-->
+      <div class="view view-main">
+        <!-- Top Navbar-->
+        <div class="navbar">
+          <div class="navbar-inner" data-page="index">
+            <!-- We have home navbar without left link-->
+            <div class="left">
+              <!-- Left link contains only icon - additional "icon-only" class--><a href="#" class="link icon-only open-panel"><i class="fa fa-navicon fa-lg gridBlue"></i></a>
+            </div>
+            <div class="center sliding"><img  src="img/grid_logo.png" width="120px" height="46px" class="img-responsive"></div>
+            <div class="right">
+              <a href="#" data-panel="right" class="link icon-only open-panel"><div class="refine-text">REFINE YOUR SEARCH</div><i class="fa fa-sliders fa-lg gridBlue" style="margin-right:10px"></i></a><!-- Right link contains only icon - additional "icon-only" class-->
+            </div>
+          </div>
+          
+          <div class="navbar-inner cached" data-page="report">
+            <div class="left sliding">
+            	<a href="#" class="link icon-only open-panel"><i class="fa fa-navicon fa-lg gridBlue"></i></a>
+        	</div>
+            <div class="center" style="color:#efefef"><i class="fa fa-pie-chart fa-fw mr-15" ></i>REPORT</div>
+            <div class="right" >
+                <a href="#index" data-force="true" class="link"><i class="fa fa-map-marker fa-2x mr-15" ></i></a>
+        	</div>
+          </div>
+ 
+          <!-- Services page navbar -->
+          <div class="navbar-inner cached" data-page="realtime">
+            <div class="left sliding">
+            	<a href="#" class="link icon-only open-panel"><i class="fa fa-navicon fa-lg gridBlue"></i></a>
+        	</div>
+            <div class="center" style="color:#efefef"><i class="fa fa-bar-chart fa-fw mr-15" ></i>REAL-TIME DATA</div>
+            <div class="right" >
+                <a href="#index" data-force="true" class="link"><i class="fa fa-map-marker fa-2x mr-15" ></i></a>
+        	</div>
+          </div>
+          
+        </div>
+        <!-- Pages, because we need fixed-through navbar and toolbar, it has additional appropriate classes-->
+        <div class="pages navbar-through toolbar-through">
+          <!-- Page, data-page contains page name-->
+          <div data-page="index" class="page">
+            <!-- Scrollable page content-->
+            <div class="page-content">
+                	<div id='gridcure_map' style="height: 95vh;"></div>
+              </div>
+              
+              <div class="toolbar">
+    			<div class="toolbar-inner">
+     				<div class="col-25">
+                        <div class="text-left" style="margin-left:14px; margin-top:-10px;">
+                            <p style="margin-top:20px; font-size:18px; color:#304057;">Asset Health Center</p>
+                        </div>
+                    </div>
+                    <div class="col-75 mr-15">
+                       
+                    </div>
+    			</div>
+			</div>
+              
+            </div>
+            
+            <!-- Report page -->
+          <div class="page cached" data-page="report">
+            <div class="page-content">
+              <div class="content-block" style="margin-top:-10px;">
+                      <div class="row">
+                          <div class="col-100">
+                              <img src="img/report_header.png" class="img-responsive" alt=""/>
+                          </div>
+                      </div>
+                      <div class="row">
+                      	<div class="col-100">
+                        	<div class="content-block-title"></div>
+                        </div>
+                      </div>
+                      <div class="row">   
+                              <div class="col-100 tablet-25">
+                                  
+                                    <div class="card demo-card-header-pic">
+                                      <div style="background-image:url(img/trans_1.png)" valign="bottom" class="card-header color-white no-border"></div>						<div class="card-content">
+                                          <div class="card-content-inner">
+                                              <h5>DEVICE NAME: <span class="lightBlue">TRANSFORMER 1</span></h5>
+                                              <h5>TYPE: <span class="lightBlue">HIGH VOLTAGE</span></h5>
+                                              <h5>MODEL: <span class="lightBlue">8D.8-1</span></h5>
+                                              <h5>LOCATION: <span class="lightBlue">KANSAS CITY, MO</span></h5>
+                                              <h5>COMMISSIONED: <span class="lightBlue">17.05.14</span></h5>
+                                              <h5>SERIAL #: <span class="lightBlue">112333534</span></h5>
+                                          </div>
+                                      </div>
+                                      <div class="card-footer">
+                                        <a href="#" class="link">DOWNLOAD PDF</a>
+                                      </div>
+                                    </div>       
+                              </div>
+                              
+                              <div class="col-100 tablet-75">
+                                  
+                                    <div class="card demo-card-header-pic">
+                                      <div style="background-image:url(img/trans_2.png)" valign="bottom" class="card-header color-white no-border"></div>
+                                      	<div class="card-content">
+                                        <div class="card-content-inner">
+                                          <div id="bar-container"></div>
+                                          <p>The above chart shows how usage levels for each transformer have changed over the last 3 years.</p><hr>
+<strong><h4><i class="fa fa-wrench mr-10"></i>TROUBLESHOOTING</h4></strong><p>
+These transformers exceeded their normal capacity this month: <strong><a href="#realtime" onclick="getReal1()">15B5</a>, <a href="#realtime" onclick="getReal2()">61B5</a>, <a href="#realtime" onclick="getReal3()">78B1</a></strong></p>
+<p>Transformers which had a performance score that changed significantly in the last month: <strong><a href="#realtime" onclick="getReal4()">24B3</a></strong>
+</p><p>Based on performance score, these transformers are close to reaching a fault: <strong><a href="#realtime" onclick="getReal1()">15B5</a>, <a href="#realtime" onclick="getReal4()">24B3</a></strong></p> 
+<p>These transformers carried the largest average current: <strong><a href="#realtime" onclick="getReal3()">78B1</a>, <a href="#realtime" onclick="getReal5()">61B3</a>, <a href="#realtime" onclick="getReal6()">12B1</strong></p>
+                                        </div>
+                                      </div>
+                                      <div class="card-footer">
+                                        
+                                      </div>
+                                    </div>       
+                              </div>
+                              
+                              </div>
+                              
+                  </div>
+            </div>
+          </div>
+          
+          <!-- Realtime page -->
+          <div class="page cached" data-page="realtime">
+            <div class="page-content">
+                  <div class="content-block">
+                      <div class="row">
+                          <div class="col-100 tablet-25">
+                              <div class="card">
+                                  <div class="card-content">
+                                      <div class="card-content-inner">
+                                          <img src="img/trans_loc.jpg" class="img-responsive" alt=""/>
+                                          <h5>DEVICE NAME: <div id="deviceMap" class="lightBlue"></div></h5>
+                                          <h5>TYPE: <span class="lightBlue">HIGH VOLTAGE</span></h5>
+                                          <h5>MODEL: <span class="lightBlue">8D.8-1</span></h5>
+                                          <h5>LOCATION: <div id="locationMap" class="lightBlue"></div></h5>
+                                          <h5>COMMISSIONED: <span class="lightBlue">24.11.01</span></h5>
+                                          <h5>SERIAL #: <span class="lightBlue">9025534</span></h5>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="col-100 tablet-75">
+                              <div class="card">
+                                  <div class="card-content">
+                                      <div class="card-content-inner">
+                                          <div id="realtime-container"></div>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                      
+                      
+                  </div>
+            </div>
+          </div>
+                    
+          </div>
+        </div>
+       
+      </div>
+    </div>
+    
+    <!-- Popup Part-->
+    <div class="popup popup-about">
+    	<div class="content-block">
+        	<p>About</p>
+            <p><a href="#" class="close-popup">Close popup</a></p>
+            <p>Lorem ipsum dolor ...</p>
+         </div>
+    </div>
+    
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    
+    <script src="http://code.highcharts.com/highcharts.js"></script>
+	<script src="http://code.highcharts.com/modules/exporting.js"></script>
+  
+    <!-- Path to Framework7 Library JS-->
+    <script type="text/javascript" src="js/framework7.min.js"></script>
+    <!-- Path to your app js-->
+    <script type="text/javascript" src="js/my-app.js"></script>
+  </body>
+</html>
