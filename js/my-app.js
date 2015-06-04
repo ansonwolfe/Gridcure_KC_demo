@@ -93,6 +93,7 @@ myApp.onPageInit('report', function (page) {
 
 
 
+
 myApp.onPageInit('realtime', function (page) {
     //run maps
 	// run createContentPage func after link was clicked

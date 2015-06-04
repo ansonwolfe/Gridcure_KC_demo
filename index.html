@@ -22,6 +22,7 @@
     <script src="js/jquery-2.1.3.js"></script>
     <script type="text/javascript" src="js/papaparse.js"></script>
     
+
         
   </head>
   <body>
@@ -34,9 +35,9 @@
       <div class="content-block">
         <p></p>
         <ul>
-        	<li><i class="fa fa-laptop fa-fw mr-15" ></i><a href="#index" data-force="true" class="close-panel">DASHBOARD</a></li>
-            <li><i class="fa fa-pie-chart fa-fw mr-15" ></i><a href="#report" class="close-panel">REPORT</a></li>
-            <li><i class="fa fa-bar-chart fa-fw mr-15" ></i><a href="#realtime" class="close-panel">REAL-TIME DATA</a></li>
+            <li><i class="fa fa-tachometer fa-fw mr-15" ></i><a href="#" class="close-panel">DASHBOARD</a></li>        
+        	<li><i class="fa fa-globe fa-fw mr-15" ></i><a href="#index" data-force="true" class="close-panel">MAP VIEW</a></li>
+            <li><i class="fa fa-pie-chart fa-fw mr-15" ></i><a href="#report" class="close-panel">SUBSTATIONS</a></li>
             <li><i class="fa fa-send fa-fw mr-15" ></i><a href="#" class="close-panel">NOTIFICATIONS</a></li>
             <li><i class="fa fa-cog fa-fw mr-15" ></i><a href="#" class="close-panel">SETTINGS</a></li>
         <ul>
@@ -163,7 +164,7 @@
             <div class="left sliding">
             	<a href="#" class="link icon-only open-panel"><i class="fa fa-navicon fa-lg gridBlue"></i></a>
         	</div>
-            <div class="center" style="color:#efefef"><i class="fa fa-pie-chart fa-fw mr-15" ></i>REPORT</div>
+            <div class="center" style="color:#efefef"><i class="fa fa-pie-chart fa-fw mr-15" ></i>SUBSTATION</div>
             <div class="right" >
                 <a href="#index" data-force="true" class="link"><i class="fa fa-map-marker fa-2x mr-15" ></i></a>
         	</div>
@@ -174,7 +175,7 @@
             <div class="left sliding">
             	<a href="#" class="link icon-only open-panel"><i class="fa fa-navicon fa-lg gridBlue"></i></a>
         	</div>
-            <div class="center" style="color:#efefef"><i class="fa fa-bar-chart fa-fw mr-15" ></i>REAL-TIME DATA</div>
+            <div class="center" style="color:#efefef"><i class="fa fa-bar-chart fa-fw mr-15" ></i>SUBSTATIONS</div>
             <div class="right" >
                 <a href="#index" data-force="true" class="link"><i class="fa fa-map-marker fa-2x mr-15" ></i></a>
         	</div>
@@ -209,28 +210,38 @@
           <div class="page cached" data-page="report">
             <div class="page-content">
               <div class="content-block" style="margin-top:-10px;">
+<!--
                       <div class="row">
                           <div class="col-100">
                               <img src="img/report_header.png" class="img-responsive" alt=""/>
                           </div>
                       </div>
+-->
                       <div class="row">
                       	<div class="col-100">
                         	<div class="content-block-title"></div>
+                        	
+                        	
+                        	
                         </div>
                       </div>
                       <div class="row">   
                               <div class="col-100 tablet-25">
                                   
                                     <div class="card demo-card-header-pic">
-                                      <div style="background-image:url(img/trans_1.png)" valign="bottom" class="card-header color-white no-border"></div>						<div class="card-content">
+<!--                                      <div style="background-image:url(img/trans_1.png)" valign="bottom" class="card-header color-white no-border"></div>
+						-->
+<!--                                    <div valign="bottom" class="card-header color-white no-border"></div>                                        -->
+                                        <img src="img/trans_loc.jpg" class="img-responsive" alt=""/>                                        
+                                         <div class="card-content">
                                           <div class="card-content-inner">
-                                              <h5>DEVICE NAME: <span class="lightBlue">TRANSFORMER 1</span></h5>
-                                              <h5>TYPE: <span class="lightBlue">HIGH VOLTAGE</span></h5>
-                                              <h5>MODEL: <span class="lightBlue">8D.8-1</span></h5>
-                                              <h5>LOCATION: <span class="lightBlue">KANSAS CITY, MO</span></h5>
+                                              <h5>STATION ID: <span class="lightBlue"> 0012-12</span></h5>
+                                              <h5>MANUFACTURER: <span class="lightBlue">GENERAL ELECTRIC </span></h5>
+                                              <h5>MANUFACTURE DATE: <span class="lightBlue">01/01/65</span></h5>
+                                              <h5>ENERGIZE DATE: <span class="lightBlue">04/25/65</span></h5>
                                               <h5>COMMISSIONED: <span class="lightBlue">17.05.14</span></h5>
                                               <h5>SERIAL #: <span class="lightBlue">112333534</span></h5>
+                                          <h5>LOCATION: <div id="locationMap" class="lightBlue"></div></h5>                                              
                                           </div>
                                       </div>
                                       <div class="card-footer">
@@ -240,9 +251,198 @@
                               </div>
                               
                               <div class="col-100 tablet-75">
+                            <script type="text/javascript">
+                            $(document).ready(function(){ 
+                                $("#myTab a").click(function(e){
+                                    e.preventDefault();
+                                    $(this).tab('show');
+                                });
+                            });
+                            </script>  
+
+                        	<div class="bs-example">
+
+                                
+                                        <div class="card demo-card-header-pic">
+                                      	<div class="card-content">
+                                        <div class="card-content-inner">
+                                          <div id="some-container"></div>
+                                            <ul class="nav nav-tabs" id="myTab">
+                                                <li class="active"><a href="#sectionA">LOCATION SAMPLES</a></li>
+                                                <li><a href="#sectionB">SUBSTATION ASSETS</a></li>
+                                                <li><a href="#dropdown1">PERFORMANCE</a></li>
+                                            </ul>
+                                        </div>
+                                      </div>
+                                    </div>               
+                                                                        
+
+                                                                
+                                <div class="tab-content">
+                                    <div id="sectionA" class="tab-pane fade in active">                                                           <div class="card demo-card-header-pic">
+                                      	<div class="card-content">
+                                        <div class="card-content-inner">
+                                          <div id="some-container"></div>
+                                              <table id="table1" class="table tablesorter">
+                                                  <thead>
+                                                       <th>Date Taken</th>
+                                                        <th>Oil Temp (C&#176;)</th>
+                                                      <th>Hydorgen (H<sub>2</sub>)</th>
+                                                            <th>Oxygen (O<sub>2</sub>)</th>
+                                                      <th>Nitrogen (N<sub>2</sub>)</th>
+                                                  </thead>
+                                                 <tbody>
+                                                    <tr>
+                                                        <td><a href="#realtime" onclick="getReal3()">2014-03-04</a></td>
+                                                        <td>24</td>
+                                                        <td>23</td>
+                                                        <td>1407</td>
+                                                        <td>69075</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><a href="#realtime" onclick="getReal3()">2012-07-24</a></td>
+                                                        <td>60</td>
+                                                        <td>21</td>
+                                                        <td>1687</td>
+                                                        <td>66861</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><a href="#realtime" onclick="getReal3()">1997-07-11</a></td>
+                                                        <td>52</td>
+                                                        <td>0</td>
+                                                        <td>2184</td>
+                                                        <td>97237</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><a href="#realtime" onclick="getReal3()">1998-07-11</a></td>
+                                                        <td>52</td>
+                                                        <td>0</td>
+                                                        <td>2184</td>
+                                                        <td>97237</td>
+                                                    </tr>                                                                                                
+                                                    <tr>
+                                                        <td><a href="#realtime" onclick="getReal3()">1998-04-20</a></td>
+                                                        <td>40</td>
+                                                        <td>1</td>
+                                                        <td>9724</td>
+                                                        <td>75444</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><a href="#realtime" onclick="getReal3()">1988-08-16</a></td>
+                                                        <td>65</td>
+                                                        <td>3</td>
+                                                        <td>0</td>
+                                                        <td>29300</td>
+                                                    </tr>                               
+                                                </tbody>
+                                              </table>                                          
+                                        </div>
+                                      </div>                                     
+                                    </div>                                              
+                                    </div>
+                                    <div id="sectionB" class="tab-pane fade">
+                                        <div class="card demo-card-header-pic">
+                                      	<div class="card-content">
+                                        <div class="card-content-inner">
+                                          <div id="some-container"></div>
+                                                 <table class="table">
+                                                  <thead>
+                                                       <th>Asset ID</th>
+                                                        <th>Asset No.</th>
+                                                        <th>In-Service Age</th>
+                                                        <th>Service Age</th>
+                                                        <th>Summer Peak</th>
+                                                  </thead>
+                                                 <tbody>                                                
+                                                    <tr>
+                                                        <td><a href="#realtime" onclick="getReal3()">XFR061642</a></td>
+                                                        <td>12B3</td>
+                                                        <td>01/01/65</td>
+                                                        <td>50.5</td>
+                                                        <td>16860</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><a href="#realtime" onclick="getReal3()">XFR030232</a></td>
+                                                        <td>12B1</td>
+                                                        <td>04/12/65</td>
+                                                        <td>49.5</td>
+                                                        <td>20680</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><a href="#realtime" onclick="getReal3()">XFR079968</a></td>
+                                                        <td>12B7</td>
+                                                        <td>05/11/76</td>
+                                                        <td>38.6/td>
+                                                        <td>20460</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><a href="#realtime" onclick="getReal3()">XFR074548</a></td>
+                                                        <td>12B5</td>
+                                                        <td>1/11/02</td>
+                                                        <td>12.6</td>
+                                                        <td>12049</td>
+                                                    </tr>                                                                           
+                                                </tbody>
+                                              </table>   
+                                          
+                                          
+                                          
+                                          
+                                          
+                                        </div>
+                                      </div>
+                                    </div>               
+                                        
+                                        
+                                        
+                                    </div>
+                                    <div id="dropdown1" class="tab-pane fade">
+<!--                                        <h3>SPECIFICATIONS</h3>-->
+ <div class="card demo-card-header-pic">
+<!--                                      <div style="background-image:url(img/trans_2.png)" valign="bottom" class="card-header color-white no-border"></div>-->
+                                      	<div class="card-content">
+                                        <div class="card-content-inner">
+                                          <div id="some-container"></div>
+
+
+                                       
+                                       
+                                       
+                                        </div>
+                                      </div>
+                                      <div class="card-footer">
+                                        
+                                      </div>
+                                    </div>          
+                                    </div>
+<!--
+                                    <div id="dropdown2" class="tab-pane fade">
+                                        <h3>Dropdown 2</h3>
+                                        <p>Donec vel placerat quam, ut euismod risus. Sed a mi suscipit, elementum sem a, hendrerit velit. Donec at erat magna. Sed dignissim orci nec eleifend egestas. Donec eget mi consequat massa vestibulum laoreet. Mauris et ultrices nulla, malesuada volutpat ante. Fusce ut orci lorem. Donec molestie libero in tempus imperdiet. Cum sociis natoque penatibus et magnis.</p>
+                                    </div>
+-->
+                                </div>
+                            </div>
+
+                                    <div class="card demo-card-header-pic">
+<!--                                      <div style="background-image:url(img/trans_2.png)" valign="bottom" class="card-header color-white no-border"></div>-->
+                                      	<div class="card-content">
+                                        <div class="card-content-inner">
+                                          <div id="some-container"></div>
+<!--                                          <p>Special Notes: </p><hr>-->
+<strong><h4><i class="fa fa-wrench mr-10"></i>NOTES: </h4></strong>
+                                       <p>Unit located behind shopping mall. Security badge required to access premise. Guard dogs on premise. </p>
+                                        </div>
+                                      </div>
+                                      <div class="card-footer">
+                                        
+                                      </div>
+                                    </div>                                                                         
+                                  
+                                  
                                   
                                     <div class="card demo-card-header-pic">
-                                      <div style="background-image:url(img/trans_2.png)" valign="bottom" class="card-header color-white no-border"></div>
+<!--                                      <div style="background-image:url(img/trans_2.png)" valign="bottom" class="card-header color-white no-border"></div>-->
                                       	<div class="card-content">
                                         <div class="card-content-inner">
                                           <div id="bar-container"></div>
@@ -270,6 +470,8 @@ These transformers exceeded their normal capacity this month: <strong><a href="#
           <div class="page cached" data-page="realtime">
             <div class="page-content">
                   <div class="content-block">
+                     
+                     
                       <div class="row">
                           <div class="col-100 tablet-25">
                               <div class="card">
@@ -279,7 +481,7 @@ These transformers exceeded their normal capacity this month: <strong><a href="#
                                           <h5>DEVICE NAME: <div id="deviceMap" class="lightBlue"></div></h5>
                                           <h5>TYPE: <span class="lightBlue">HIGH VOLTAGE</span></h5>
                                           <h5>MODEL: <span class="lightBlue">8D.8-1</span></h5>
-                                          <h5>LOCATION: <div id="locationMap" class="lightBlue"></div></h5>
+<!--                                          <h5>LOCATION: <div id="locationMap" class="lightBlue"></div></h5>-->
                                           <h5>COMMISSIONED: <span class="lightBlue">24.11.01</span></h5>
                                           <h5>SERIAL #: <span class="lightBlue">9025534</span></h5>
                                       </div>
@@ -287,13 +489,57 @@ These transformers exceeded their normal capacity this month: <strong><a href="#
                               </div>
                           </div>
                           <div class="col-100 tablet-75">
-                              <div class="card">
+                                <div class="card">
+                                  <div class="card-content">
+                                     
+                                     
+ 
+                                      <div class="card-content-inner">
+                                          <div id="tabs-container">
+                                             
+                                              <div class="container">
+                                                  <h2>Specifications</h2>
+<!--                                                  <p>The .table-hover class enables a hover state on table rows:</p>            -->
+                                                  <table class="table table-hover">
+                                                    <thead>
+                                                      <tr>
+                                                        <th>Asset No.</th>
+                                                        <th>Asset Name</th>
+                                                        <th>MFG.</th>
+                                                        <th>MFG.</th>
+                                                        <th>MFG.</th>                                                        
+                                                      </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                      <tr>
+                                                        <td>John</td>
+                                                        <td>Doe</td>
+                                                        <td>john@example.com</td>
+                                                      </tr>
+                                                      <tr>
+                                                        <td>Mary</td>
+                                                        <td>Moe</td>
+                                                        <td>mary@example.com</td>
+                                                      </tr>
+                                                      <tr>
+                                                        <td>July</td>
+                                                        <td>Dooley</td>
+                                                        <td>july@example.com</td>
+                                                      </tr>
+                                                    </tbody>
+                                                  </table>
+                                                </div>                                           
+                                          </div>
+                                      </div>
+                                  </div>
+                                 </div>                      
+                                 <div class="card">
                                   <div class="card-content">
                                       <div class="card-content-inner">
                                           <div id="realtime-container"></div>
                                       </div>
                                   </div>
-                              </div>
+                                 </div>
                           </div>
                       </div>
                       
@@ -319,6 +565,9 @@ These transformers exceeded their normal capacity this month: <strong><a href="#
     
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
     
+      <!--    JQuery sorter-->
+    <script type="text/javascript" src="js/jquery.tablesorter.js"></script> 
+    <script type="text/javascript" src="js/tables.js"></script>
     <script src="http://code.highcharts.com/highcharts.js"></script>
 	<script src="http://code.highcharts.com/modules/exporting.js"></script>
   
