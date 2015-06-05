@@ -35,7 +35,7 @@
       <div class="content-block">
         <p></p>
         <ul>
-            <li><i class="fa fa-tachometer fa-fw mr-15" ></i><a href="#" class="close-panel">DASHBOARD</a></li>        
+            <li><i class="fa fa-tachometer fa-fw mr-15" ></i><a href="#widgets" class="close-panel">DASHBOARD</a></li>        
         	<li><i class="fa fa-globe fa-fw mr-15" ></i><a href="#index" data-force="true" class="close-panel">MAP VIEW</a></li>
             <li><i class="fa fa-pie-chart fa-fw mr-15" ></i><a href="#report" class="close-panel">SUBSTATIONS</a></li>
             <li><i class="fa fa-send fa-fw mr-15" ></i><a href="#" class="close-panel">NOTIFICATIONS</a></li>
@@ -175,7 +175,7 @@
             <div class="left sliding">
             	<a href="#" class="link icon-only open-panel"><i class="fa fa-navicon fa-lg gridBlue"></i></a>
         	</div>
-            <div class="center" style="color:#efefef"><i class="fa fa-bar-chart fa-fw mr-15" ></i>SUBSTATIONS</div>
+            <div class="center" style="color:#efefef"><i class="fa fa-bar-chart fa-fw mr-15" ></i>ASSET UNIT</div>
             <div class="right" >
                 <a href="#index" data-force="true" class="link"><i class="fa fa-map-marker fa-2x mr-15" ></i></a>
         	</div>
@@ -501,25 +501,20 @@
                               </div>
                           </div>
                           <div class="col-100 tablet-75">
-                                <div class="card container">
-                                  <div class="card-content">
-                                     
-                                     
- 
-                                      <div class="card-content-inner">
-                                          <div id="tabs-container">
-                                             
-                                              <div class="container">
+                                <div class="card ">
+                                  <div class="card-content">                                   
+                                        <div class="card-content-inner">
+
                                                   <h2>Specifications</h2>
-<!--                                                  <p>The .table-hover class enables a hover state on table rows:</p>            -->
-                                                  <table class="table table-hover">
+
+                                                  <table class="table table-hover container max-width">
                                                     <thead>
                                                       <tr>
                                                         <th>Asset ID</th>
                                                         <th>Asset Name</th>
                                                         <th>MFG.</th>
                                                         <th>TX Type</th>
-                                                        <th>Winding Voltages</th>                                                        
+                                                        <th>Bus Criticality score</th>                                                        
                                                       </tr>
                                                     </thead>
                                                     <tbody>
@@ -531,23 +526,22 @@
                                                         <td>161/13/13</td>
                                                       </tr>
                                                       <tr>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
+                                                        <th>Avg. Load Score(Higher is better)</th>
+                                                        <th>Bus Criticality Score(Higher is better)</th>
+                                                        <th>Customer Score (Higher is better)</th>
+                                                        <th>Contingency Weighting Factor</th>
+                                                        <th>In Service Date</th>
                                                       </tr>
                                                       <tr>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
+                                                        <td>1789</td>
+                                                        <td>5512.54314</td>
+                                                        <td>3724</td>
+                                                        <td>1.5</td>
+                                                        <td>01/01/65</td>
                                                       </tr>
                                                     </tbody>
                                                   </table>
-                                                </div>                                           
-                                          </div>
+
                                       </div>
                                   </div>
                                  </div>                      
